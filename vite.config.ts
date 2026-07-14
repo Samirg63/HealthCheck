@@ -6,12 +6,10 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  root:"src",
   test:{
     globals:true,
     environment:"jsdom",
     include:['**\/(*.)?{test,spec}.?(c|m)[jt]s?(x)'],
-    exclude:['**\/node_modules/**', '**\/.git/**'],
-    clearMocks:true
+    exclude:['**\/node_modules/**', '**\/.git/**']
   }
 })

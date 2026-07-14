@@ -1,7 +1,7 @@
 import { useContext, type MouseEvent } from "react";
 import { useForm } from "../../hooks/useForm"
 import { AuthService } from "../../services/AuthService";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+
 import Input from "../Input"
 import { loginContext } from "../../contexts/loginContext";
 
@@ -10,7 +10,7 @@ const AuthForm = () => {
 
   const {formData,changeHandler} = useForm();
   const {login} = AuthService();
-  const {setData} = useLocalStorage()
+  
   const {setIsLogged} = useContext(loginContext)
 
   async function submitHandler(e?:MouseEvent<HTMLButtonElement>){
@@ -18,8 +18,7 @@ const AuthForm = () => {
     if(e) e.preventDefault();
 
     try {
-      const token = await login(formData as {email:string,password:string})
-      setData('token',token!)
+      await login(formData as {email:string,password:string})
       setIsLogged(true)
     } catch (error) {
       console.error(error)

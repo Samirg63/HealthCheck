@@ -44,7 +44,7 @@ const APIDots = ({APIs}:Props) => {
     })
 
   return (
-    <div className="relative inline" ref={ApiContainerRef} data-testid="apiDots">
+    <div className="relative inline " ref={ApiContainerRef} data-testid="apiDots">
 
     <button data-testid="ApiContainerBtn" className="cursor-pointer ml-6.75 relative" onClick={handleAPIContainerVisibility}>
         <BsThreeDots size={26}/>
@@ -57,7 +57,7 @@ const APIDots = ({APIs}:Props) => {
     </button>
     {
         (APIsContainerVisibility) &&
-        <section  data-testid="apiContainer" className={`${styles.shadow} bg-white border border-lightGray w-40 absolute py-1 px-2 rounded-xl left-8 top-6`}>
+        <section  data-testid="apiContainer" className={`${styles.shadow} bg-white border  border-lightGray w-40 absolute py-1 px-2 rounded-xl left-8 top-6 z-99`}>
             <ul className="space-y-1">
                 {
                     APIs.map((data:{[index:string]:{success:boolean}},index:number)=>(

@@ -7,6 +7,6 @@ export interface ISitesContext{
         url: string;
     }) => Promise<void>,
     data:ISite,
-    getHealth:() => Promise<void>
+    getHealth:(token?:string) => Promise<void>
 
 }

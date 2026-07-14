@@ -7,10 +7,10 @@ import { SitesProvider } from './contexts/sitesContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <LoginProvider>
       <SitesProvider>
+        <LoginProvider>
         <App />
+        </LoginProvider>
       </SitesProvider>
-    </LoginProvider>
   </StrictMode>,
 )

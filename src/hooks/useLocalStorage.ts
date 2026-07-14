@@ -1,7 +1,7 @@
 export function useLocalStorage(){
 
-    const setData = (key:string,data:Object)=>{
-        localStorage.setItem(key,JSON.stringify(data))
+    const setData =  (key:string,data:Object)=>{
+         localStorage.setItem(key,JSON.stringify(data))
     }
 
     const getData = (key:string)=>{

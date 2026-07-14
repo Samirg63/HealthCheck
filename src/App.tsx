@@ -1,7 +1,7 @@
 
 
 //Components
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Container from "./components/layout/Container/Container";
 import Header from "./components/layout/Header";
 import NewSiteForm from "./components/Forms/NewSiteForm";
@@ -9,26 +9,14 @@ import Table from "./components/Table";
 import AuthForm from "./components/Forms/AuthForm";
 import {loginContext} from "./contexts/loginContext";
 import { SitesContext } from "./contexts/sitesContext";
-import { AuthService } from "./services/AuthService";
+
 
 
 function App() {
   
   const [formVisibility,setFormVisibility] = useState<boolean>(false)
   const {isLogged} = useContext(loginContext)
-  const {data,getHealth} = useContext(SitesContext)
-  const {verifyToken} = AuthService();
-  
-  useEffect(()=>{
-    async function fetchData(){
-        await getHealth();    
-    }
-
-    if(isLogged){
-      fetchData()
-    }
-
-  },[isLogged])
+  const {data} = useContext(SitesContext)
   
 
   return (
@@ -37,7 +25,7 @@ function App() {
         <Header />
         <Container>
           {
-            (!isLogged)?
+            (!isLogged )?
             <AuthForm/>
             :
             <>

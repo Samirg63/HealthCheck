@@ -12,7 +12,11 @@ export function SitesServices(){
     const [loading,setLoading] = useState<boolean>(false);
     const [data,setData] = useState<ISite>({})
     
-    async function getHealth(){          
+    async function getHealth(token?:string){   
+        
+        const usedToken = token ? token : userToken
+
+        
         try {
             setLoading(true)
             
@@ -20,7 +24,7 @@ export function SitesServices(){
             method:"GET",
             headers:{
                 "Content-Type":"Application/json",
-                "Authorization":"Bearer "+userToken
+                "Authorization":"Bearer "+usedToken
             }
             })
             const result:IResult<ISite> = await response.json();

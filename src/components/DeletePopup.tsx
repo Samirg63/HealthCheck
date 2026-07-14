@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, type SetStateAction } from 'react'
+import React, { useContext, useRef, type SetStateAction } from 'react'
 import { useClickAway } from '../hooks/useClickAway'
 import { IoMdClose } from 'react-icons/io'
 import { FaCheck } from 'react-icons/fa6'
