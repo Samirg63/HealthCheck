@@ -1,6 +1,6 @@
 //Types
 import type React from "react"
-import { useContext, useEffect, useState, type SetStateAction } from "react"
+import { useContext, useState, type SetStateAction } from "react"
 
 //Components
 import APIDots from "./Dots/APIDots"
@@ -21,7 +21,7 @@ type Props = {
     
 }
 
-const Table = ({handleFormVisibility,}:Props) => {
+const Table = ({handleFormVisibility}:Props) => {
 
     const {loading,data} = useContext(SitesContext)
     const [isEditing,setIsEditing] = useState<number | null>(null)

@@ -1,50 +1,50 @@
-///<reference types="jest" />
-
 import { render,screen } from "@testing-library/react";
 import Table from "../components/Table"
 import type { IAPIs } from "../types/IAPIs";
 import '@testing-library/jest-dom';
 import type { ISite } from "../types/ISite";
+import {describe, expect,test, vi} from 'vitest'
+import { SitesContext } from "../contexts/sitesContext";
 
 describe("Table",()=>{
 
-    const handleFormVisibilityMock = jest.fn();
+    const handleFormVisibilityMock = vi.fn();
 
     //TempAPIs
     const mockAPIs:IAPIs[] = [
-        {
-            name:"API 1",
-            status:true
-        },
-        {
-            name:"API 2",
-            status:true
-        },
-        {
-            name:"API 3",
-            status:false,
-        }
+        {apiOne:{success:true}},
+        {apiTwo:{success:false}}
     ]
+    
 
-    const mockSites:ISite[]= [
-        {
-            name:'Site 1',
-            frontend:true,
-            
-            
+    const mockSites:ISite= {
+
+        siteOne:{   
+            frontend:{success:true},
+            url:"www.teste.com"   
         },
-        {
-            name:'Site 2',
-            frontend:true,
-            backend:false,
-            apis:mockAPIs
+        siteTwo:{
+            frontend:{success:true},
+            backend:{success:false},
+            apis:mockAPIs,
+            url:"www.teste.com"
         }
-    ]
+    }
+    
     test("GetDot is rendering correctly",()=>{
-        render(<Table handleFormVisibility={handleFormVisibilityMock} sites={mockSites}/>)
+        render(
+            <SitesContext.Provider value={{
+                loading:false,
+                createSite:vi.fn(),
+                data:mockSites,
+                getHealth:vi.fn()
+            }}>
+                <Table handleFormVisibility={handleFormVisibilityMock} />
+            </SitesContext.Provider>
+    )
 
-        expect(screen.getByText('Site 1')).toBeInTheDocument();
-        expect(screen.getByText('Site 2')).toBeInTheDocument();
+        expect(screen.getByText('siteOne')).toBeInTheDocument();
+        expect(screen.getByText('siteTwo')).toBeInTheDocument();
         expect(screen.getAllByTestId('greenDot')).toHaveLength(2);
         expect(screen.getAllByTestId('redDot')).toHaveLength(1);
         expect(screen.getAllByTestId('yellowDot')).toHaveLength(4);

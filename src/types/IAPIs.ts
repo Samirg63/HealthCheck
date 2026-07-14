@@ -1,4 +1,2 @@
 
-export interface IAPIs{
-    [index:string]:{success:boolean}
-}
+export type IAPIs = {[index:string]:{success:boolean}}

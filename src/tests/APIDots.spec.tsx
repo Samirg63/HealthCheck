@@ -1,5 +1,3 @@
-///<reference types="jest" />
-
 import { render, screen,within} from '@testing-library/react'
 import {userEvent} from '@testing-library/user-event'
 import APIDots from '../components/Dots/APIDots';
@@ -7,30 +5,19 @@ import '@testing-library/jest-dom';
 import Table from '../components/Table';
 import type { IAPIs } from '../types/IAPIs';
 import type { ISite } from '../types/ISite';
+import { describe,test, vi } from 'vitest';
+import { SitesContext } from '../contexts/sitesContext';
 
 
 describe('APIDots',()=>{
 
     const mockApis:IAPIs[] = [
-        {
-            name:"API 1",
-            status:true
-        },
-        {
-            name:"API 2",
-            status:true
-        },
-        {
-            name:"API 3",
-            status:false
-        }
+        {"API 1":{success:true}},
+        {"API 2":{success:true}},
+        {"API 3":{success:false}}
     ]
 
-    const mockHandleFormVisibility = jest.fn();
-
-    afterEach(()=>{
-        jest.clearAllMocks();
-    })
+    const mockHandleFormVisibility = vi.fn();
 
     describe("Render tests",()=>{
         test("Is rendering all Apis",async ()=>{
@@ -40,12 +27,13 @@ describe('APIDots',()=>{
             const button = screen.getByTestId('ApiContainerBtn');
             await userEvent.click(button);   
 
-            for(const api of mockApis){   
-                let span = screen.getByText(api.name)
+
+            for(const [index, api] of mockApis.entries()){   
+                let span = screen.getByText(Object.keys(api)[0])
                 let li = span.closest('li')!
                 expect(span).toBeInTheDocument();
-
-                if(api.status){
+                console.log(mockApis[index][Object.keys(api)[0] as string])
+                if(mockApis[index][Object.keys(api)[0] as string].success){
                     expect(
                         within(li).getByTestId('greenDot')
                     ).toBeInTheDocument();
@@ -60,35 +48,24 @@ describe('APIDots',()=>{
     })
 
     describe("API Container Visibility tests",()=>{
-            const mockAPIs:IAPIs[] = [
-                {
-                    name:"API 1",
-                    status:true
-                },
-                {
-                    name:"API 2",
-                    status:true
-                },
-                {
-                    name:"API 3",
-                    status:false,
-                }
+            const mockApis:IAPIs[] = [
+                {"API 1":{success:true}},
+                {"API 2":{success:true}},
+                {"API 3":{success:false}}
             ]
         
-            const mockSites:ISite[]= [
-                {
-                    name:'Site 1',
-                    frontend:true,
-                    
-                    
+            const mockSites:ISite= {
+                "Site 1":{   
+                    frontend:{success:true},
+                    url:"www.teste.com"   
                 },
-                {
-                    name:'Site 2',
-                    frontend:true,
-                    backend:false,
-                    apis:mockAPIs
+                "Site 2":{
+                    frontend:{success:true},
+                    backend:{success:false},
+                    apis:mockApis,
+                    url:"www.teste.com"
                 }
-            ]
+            }
 
         test('Container fica visivel ao clicar no botão',async ()=>{
             render(<APIDots APIs={mockApis} />);
@@ -100,7 +77,15 @@ describe('APIDots',()=>{
         })
         
         test("close APIs Container when Click away", async()=>{
-            render(<Table sites={mockSites} handleFormVisibility={mockHandleFormVisibility}/>);
+            render(<SitesContext.Provider value={{
+                        loading:false,
+                        createSite:vi.fn(),
+                        data:mockSites,
+                        getHealth:vi.fn()
+                    }}>
+                        <Table handleFormVisibility={mockHandleFormVisibility} />
+                    </SitesContext.Provider>
+            );
             const button = screen.getByTestId('ApiContainerBtn');
             await userEvent.click(button);  
             expect(screen.queryByTestId('apiContainer')).toBeInTheDocument();

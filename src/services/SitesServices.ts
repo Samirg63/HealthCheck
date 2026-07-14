@@ -3,12 +3,14 @@ import type { ISite } from "../types/ISite"
 import { useLocalStorage } from "../hooks/useLocalStorage"
 import type { IResult } from "../types/IResult";
 
+
 export function SitesServices(){
-    const url:string = import.meta.env.VITE_API_URL+'/sites'
+    const url:string = import.meta.env.VITE_API_URL+'/sites';
+
     const {getData} = useLocalStorage();
     const userToken = getData('token').token
     const [loading,setLoading] = useState<boolean>(false);
-    const [data,setData] = useState<{[index:string]:ISite}>({})
+    const [data,setData] = useState<ISite>({})
     
     async function getHealth(){          
         try {
@@ -21,7 +23,7 @@ export function SitesServices(){
                 "Authorization":"Bearer "+userToken
             }
             })
-            const result:IResult<{[index:string]:ISite}> = await response.json();
+            const result:IResult<ISite> = await response.json();
             setData(result.data!)
         } catch (error) {
             console.error(error)

@@ -3,6 +3,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import type { IResult } from '../types/IResult';
 
 
+
 export function AuthService(){
 
     const url:string = import.meta.env.VITE_API_URL+'/auth';
