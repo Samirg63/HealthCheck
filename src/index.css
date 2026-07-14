@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme{
+  --color-Morange: #fb5b04;
+  --color-hover-Morange:#e35305;
+  --color-white:#f5f5f5;
+  --color-lightGray:#ebeaea;
+  --color-black:#141414;
+  --color-success:#9ee8a5;
+  --color-error:#f67a7a;
+  --color-edit:#f2c283;
+}
+
+
+
+@layer base{
+  th:first-of-type,td:first-of-type{
+    padding: 15px 0 15px 15px;
+  }
+
+  th{
+    font-weight: 600;
+  }
+
+  *:not(svg,path){
+    color: #141414;
+  }
+}
+
+@layer components{
+  .boxShadow{
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+  }
+}

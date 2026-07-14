@@ -1,0 +1,8 @@
+.container{
+    box-shadow: 0 0 10px rgba(20,20,20,.5);
+    background:repeating-linear-gradient(
+        to bottom,
+        #f5f5f5 0 54px,
+        #ebeaea 54px 108px
+    );
+}
