@@ -1,19 +1,21 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import type { ISite } from "../types/ISite"
 import { useLocalStorage } from "../hooks/useLocalStorage"
 import type { IResult } from "../types/IResult";
+import type { INotificationContext } from "../types/ContextTypes/INotificationContext";
+import { NotificationContext } from "../contexts/notificationContext";
 
 
 export function SitesServices(){
     const url:string = import.meta.env.VITE_API_URL+'/sites';
 
+    const {newNotification} = useContext<INotificationContext>(NotificationContext)
     const {getData} = useLocalStorage();
     const userToken = getData('token').token
     const [loading,setLoading] = useState<boolean>(false);
     const [data,setData] = useState<ISite>({})
     
     async function getHealth(token?:string){   
-        
         const usedToken = token ? token : userToken
 
         
@@ -38,7 +40,7 @@ export function SitesServices(){
     }
 
     async function createSite(siteData:{name:string,url:string}){
-        try {
+        
             setLoading(true);
             await fetch(url,{
                 method:'POST',
@@ -48,17 +50,37 @@ export function SitesServices(){
                 },
                 body:JSON.stringify(siteData)
             })
-            await getHealth();
+            .then(res => res.json())
+            .then(async (result)=>{
+                if(!result.success){
+                    throw result.errors
+                       
+                }
+                    newNotification('Site adicionado com sucesso!',true)
+                    await getHealth();
+                
+            })
+            .catch((error)=>{
+                if((error as any)[0].status == 422){
+                    newNotification("Preencha todos os campos corretamente!",false)
+                    setLoading(false)
+                    return;
+                }
 
-        } catch (error) {
-            console.error(error)
-        }
+                newNotification('Erro ao adicionar site!',false)
+            })
+            
 
     }
 
     async function update(siteData:Partial<{name:string,url:string,id:string}>){
         
         const {id, ...rest} = siteData
+
+        if(rest.name == '' || rest.url == ""){
+            newNotification("Preencha todos os campos corretamente!",false)
+            return;
+        }
         
         try {
             setLoading(true)
@@ -79,7 +101,7 @@ export function SitesServices(){
                 throw result.errors[0]
             }
         } catch (error) {
-            throw error
+            newNotification('Erro ao editar site!',false)
         }
         finally{
             setLoading(false)
@@ -99,14 +121,14 @@ export function SitesServices(){
 
             const result:IResult<{}> = await response.json();
 
-            if(result.success){
-                return true;
-            }else{
+            if(!result.success){
                 throw result.errors[0]
             }
+            
+            newNotification('Site apagado com sucesso!',true)
 
         } catch (error) {
-            throw error
+            newNotification("Erro ao apagar o site! tente novamente", false)
         } finally{
             setLoading(false)
         }

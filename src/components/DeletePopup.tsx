@@ -4,6 +4,8 @@ import { IoMdClose } from 'react-icons/io'
 import { FaCheck } from 'react-icons/fa6'
 import { SitesServices } from '../services/SitesServices'
 import { SitesContext } from '../contexts/sitesContext'
+import type { INotificationContext } from '../types/ContextTypes/INotificationContext'
+import { NotificationContext } from '../contexts/notificationContext'
 
 type Props = {
     x:number,
@@ -16,6 +18,7 @@ const DeletePopup = ({x,y,id,handlePopupVisibility}: Props) => {
 
     const {deleteSite} = SitesServices()
     const {getHealth} = useContext(SitesContext)
+    const {newNotification} = useContext<INotificationContext>(NotificationContext)
 
     const popupContainer = useRef<HTMLDivElement>(null)
     useClickAway(popupContainer as React.RefObject<HTMLDivElement>,()=>{
@@ -28,13 +31,12 @@ const DeletePopup = ({x,y,id,handlePopupVisibility}: Props) => {
     })
 
     async function handleDelete(){
-        try {
+        
             await deleteSite(id)
             handlePopupVisibility(null)
             await getHealth();
-        } catch (error) {
-            alert('Something goes wrong')
-        }
+        
+ 
     }
     
   return (

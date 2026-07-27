@@ -1,0 +1,25 @@
+.notificationSingle{
+    animation-duration:3s;
+    animation-name: fadeMessage;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeMessage {
+    0%{
+        right:-120%
+    }
+
+    5%{
+        right:.5rem
+    }
+
+    95%{
+        right:.5rem
+    }
+
+    to{
+        right:-120%;
+        display:none
+    }
+}

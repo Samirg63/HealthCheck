@@ -1,4 +1,4 @@
-import type { ISite } from "./ISite";
+import type { ISite } from "../ISite";
 
 export interface ISitesContext{
     loading:boolean,

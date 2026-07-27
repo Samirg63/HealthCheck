@@ -6,22 +6,27 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { loginContext } from "../../contexts/loginContext";
 import type { ILoginContext } from "../../types/loginContext";
 
+
 const Header = () => {
 
     const [tempLogoutVisibility] = useState<boolean>(true)
     const {isLogged,setIsLogged} = useContext<ILoginContext>(loginContext)
     const {deleteData} = useLocalStorage(); 
+
     
     function logout(){
       deleteData('token')
       setIsLogged(false);
     }
 
+
+
   return (
     <header className="py-4 px-2 flex justify-between">
         <a href="/">
           <h1 className="text-Morange text-3xl font-light">Health-Check</h1>
         </a>
+        
         {
           (tempLogoutVisibility) &&
           <button onClick={logout} className="cursor-pointer" hidden={!isLogged}>

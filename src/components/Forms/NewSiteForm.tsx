@@ -8,6 +8,8 @@ import { IoMdClose } from "react-icons/io"
 import { useForm } from "../../hooks/useForm"
 import { SitesContext } from "../../contexts/sitesContext"
 import { SitesServices } from "../../services/SitesServices"
+import type { INotificationContext } from "../../types/ContextTypes/INotificationContext"
+import { NotificationContext } from "../../contexts/notificationContext"
 
 
 type Props = {
@@ -26,21 +28,20 @@ const NewSiteForm = ({handleFormVisibility,sitesLength,handleEdit,type = "create
     const {formData,changeHandler,setFormData} = useForm()
     const {createSite,getHealth} = useContext(SitesContext);
     const {update} = SitesServices()
+    const {newNotification} = useContext<INotificationContext>(NotificationContext)
     
 
     async function handleSubmit(e:React.MouseEvent<HTMLButtonElement>){
         e.preventDefault();
         if(type == "create" && handleFormVisibility){
-            handleFormVisibility(false);
-            await createSite(formData as {name:string,url:string})      
-        }else if(type == "edit" && handleEdit){
-            try {
+            handleFormVisibility(false);  
+            await createSite(formData as {name:string,url:string})
+   
+
+        }else if(type == "edit" && handleEdit){       
                 await update(formData)
                 handleEdit()
                 await getHealth()
-            } catch (error) {
-                throw error
-            }
         }
     }
 

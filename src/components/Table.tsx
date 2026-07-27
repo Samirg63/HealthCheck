@@ -7,6 +7,7 @@ import APIDots from "./Dots/APIDots"
 import GreenDot from "./Dots/GreenDot"
 import RedDot from "./Dots/RedDot"
 import YellowDot from "./Dots/YellowDot"
+import { CiRepeat } from "react-icons/ci";
 
 import { ClipLoader } from "react-spinners"
 import { SitesContext } from "../contexts/sitesContext"
@@ -23,7 +24,7 @@ type Props = {
 
 const Table = ({handleFormVisibility}:Props) => {
 
-    const {loading,data} = useContext(SitesContext)
+    const {loading,data,getHealth} = useContext(SitesContext)
     const [isEditing,setIsEditing] = useState<number | null>(null)
     const [popup,setPopup] = useState<{x:number,y:number,id:string} | null>()
 
@@ -72,7 +73,9 @@ const Table = ({handleFormVisibility}:Props) => {
             <table className="w-10/12">
                 <thead className="text-lg ">
                     <tr className="text-left">
-                        <th className="py-3.25 min-w-25" >Site</th>
+                        <th className="py-3.25 min-w-25 flex items-center gap-2" >
+                            <button onClick={()=>{getHealth()}} className="cursor-pointer"><CiRepeat size={24}/></button>
+                            Site</th>
                         <th >Front-end</th>
                         <th >Back-end</th>
                         <th >Database</th>

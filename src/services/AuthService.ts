@@ -29,7 +29,7 @@ export function AuthService(){
             if(response.success){
                 
                 setData('token',response.data!)
-                await getHealth(response.data!.token)
+                getHealth(response.data!.token)
                 return response.data
             }else{
                 throw response.errors[0]
