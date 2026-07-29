@@ -77,12 +77,12 @@ const NewSiteForm = ({handleFormVisibility,sitesLength,handleEdit,type = "create
             value={formData.url}    
                 />
         </div>
-        <div className={`flex gap-4 items-center 
+        <div className={`flex gap-4 items-baseline mt-0.5 
             ${
                 (type == 'create')?
-                'mr-13'
+                'mr-10.5'
                 :
-                'mr-10'
+                'mr-7'
             }
            `}>
             <button onClick={()=>{
@@ -92,13 +92,13 @@ const NewSiteForm = ({handleFormVisibility,sitesLength,handleEdit,type = "create
                 else if(type === "edit"){
                     handleEdit!()
                 }
-                }} className="cursor-pointer py-1 px-2 rounded-md bg-error">
-                <IoMdClose size={22} style={{color:'#f4f4f4'}}/>
+                }} className="cursor-pointer py-1.5 px-4 rounded-md bg-error">
+                <IoMdClose size={16} style={{color:'#f4f4f4'}}/>
             </button>
             <button
             onClick={handleSubmit}
-            className="cursor-pointer py-1 px-2 rounded-md bg-success text-white">
-                <FaCheck size={22} style={{color:'#f4f4f4'}}/>
+            className="cursor-pointer py-1.5 px-4 rounded-md bg-success text-white">
+                <FaCheck size={16} style={{color:'#f4f4f4'}}/>
             </button>
         </div>
     </form>
