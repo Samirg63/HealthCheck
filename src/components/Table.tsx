@@ -73,13 +73,13 @@ const Table = ({handleFormVisibility}:Props) => {
             <table className="w-10/12">
                 <thead className="text-lg ">
                     <tr className="text-left">
-                        <th className="py-3.25 min-w-25 flex items-center gap-2" >
+                        <th className="py-3.25 min-w-32 flex items-center gap-2" >
                             <button onClick={()=>{getHealth()}} className="cursor-pointer"><CiRepeat size={24}/></button>
                             Site</th>
-                        <th >Front-end</th>
-                        <th >Back-end</th>
-                        <th >Database</th>
-                        <th className="pl-5">APIs</th>
+                        <th className="min-w-25">Front-end</th>
+                        <th className="min-w-25">Back-end</th>
+                        <th className="min-w-25">Database</th>
+                        <th className="pl-5 min-w-25">APIs</th>
                         
                         
         
@@ -154,7 +154,7 @@ const Table = ({handleFormVisibility}:Props) => {
 
             </table>
             <button onClick={()=>{
-                if(isEditing){
+                if(typeof isEditing == 'number'){
                     handleEdit()
                 }
                 handleFormVisibility(true)

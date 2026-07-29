@@ -77,7 +77,14 @@ const NewSiteForm = ({handleFormVisibility,sitesLength,handleEdit,type = "create
             value={formData.url}    
                 />
         </div>
-        <div className="flex gap-4 items-center mr-10">
+        <div className={`flex gap-4 items-center 
+            ${
+                (type == 'create')?
+                'mr-13'
+                :
+                'mr-10'
+            }
+           `}>
             <button onClick={()=>{
                 if(type === "create"){
                     handleFormVisibility!(false)
