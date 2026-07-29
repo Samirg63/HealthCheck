@@ -80,9 +80,9 @@ const NewSiteForm = ({handleFormVisibility,sitesLength,handleEdit,type = "create
         <div className={`flex gap-4 items-baseline mt-0.5 
             ${
                 (type == 'create')?
-                'mr-10.5'
+                'mr-[3.4%]'
                 :
-                'mr-7'
+                'mr-[2.2%]'
             }
            `}>
             <button onClick={()=>{
