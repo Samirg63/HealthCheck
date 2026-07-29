@@ -1,11 +1,21 @@
+//Libs
 import { useContext, useState, type MouseEvent } from "react";
+
+//Components
+import { ClipLoader } from "react-spinners";
+import Input from "../Input"
+
+//Types
+import type { INotificationContext } from "../../types/ContextTypes/INotificationContext";
+
+//Hooks
 import { useForm } from "../../hooks/useForm"
+
+//Services
 import { AuthService } from "../../services/AuthService";
 
-import Input from "../Input"
+//Contexts
 import { loginContext } from "../../contexts/loginContext";
-import { ClipLoader } from "react-spinners";
-import type { INotificationContext } from "../../types/ContextTypes/INotificationContext";
 import { NotificationContext } from "../../contexts/notificationContext";
 
 

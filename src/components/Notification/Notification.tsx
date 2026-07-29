@@ -1,5 +1,8 @@
+//Icons
 import { FaCheck } from "react-icons/fa6";
 import { MdErrorOutline } from "react-icons/md";
+
+//Styles
 import style from './Notification.module.css'
 
 

@@ -1,5 +1,7 @@
 //Types
 import type React from "react"
+
+//Libs
 import { useContext, useState, type SetStateAction } from "react"
 
 //Components
@@ -7,14 +9,17 @@ import APIDots from "./Dots/APIDots"
 import GreenDot from "./Dots/GreenDot"
 import RedDot from "./Dots/RedDot"
 import YellowDot from "./Dots/YellowDot"
-import { CiRepeat } from "react-icons/ci";
-
 import { ClipLoader } from "react-spinners"
-import { SitesContext } from "../contexts/sitesContext"
-import { MdEdit } from "react-icons/md"
-import { FaTrash } from "react-icons/fa6"
 import NewSiteForm from "./Forms/NewSiteForm"
 import DeletePopup from "./DeletePopup"
+
+//Icons
+import { CiRepeat } from "react-icons/ci";
+import { MdEdit } from "react-icons/md"
+import { FaTrash } from "react-icons/fa6"
+
+//Contexts
+import { SitesContext } from "../contexts/sitesContext"
 
 
 type Props = {

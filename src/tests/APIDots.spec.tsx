@@ -1,11 +1,18 @@
+//Libs
 import { render, screen,within} from '@testing-library/react'
 import {userEvent} from '@testing-library/user-event'
-import APIDots from '../components/Dots/APIDots';
 import '@testing-library/jest-dom';
+import { describe,test, vi } from 'vitest';
+
+//Components
+import APIDots from '../components/Dots/APIDots';
 import Table from '../components/Table';
+
+//Types
 import type { IAPIs } from '../types/IAPIs';
 import type { ISite } from '../types/ISite';
-import { describe,test, vi } from 'vitest';
+
+//Contexts
 import { SitesContext } from '../contexts/sitesContext';
 
 

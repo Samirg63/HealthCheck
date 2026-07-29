@@ -1,4 +1,10 @@
-import { useState, type ChangeEvent, type MouseEvent } from "react";
+//Types
+import type { ChangeEvent,MouseEvent } from "react";
+
+//Libs
+import { useState} from "react";
+
+//Icons
 import { FaRegEye,FaRegEyeSlash } from "react-icons/fa";
 
 

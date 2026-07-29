@@ -1,9 +1,16 @@
+//Libs
 import { render,screen } from "@testing-library/react";
-import Table from "../components/Table"
-import type { IAPIs } from "../types/IAPIs";
 import '@testing-library/jest-dom';
-import type { ISite } from "../types/ISite";
 import {describe, expect,test, vi} from 'vitest'
+
+//Types
+import type { IAPIs } from "../types/IAPIs";
+import type { ISite } from "../types/ISite";
+
+//Components
+import Table from "../components/Table"
+
+//Contexts
 import { SitesContext } from "../contexts/sitesContext";
 
 describe("Table",()=>{

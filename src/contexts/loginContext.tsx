@@ -1,7 +1,16 @@
+//Libs
 import React, { createContext, useContext, useEffect, useState } from 'react'
+
+//Types
 import type { ILoginContext } from '../types/loginContext';
+
+//hooks
 import { useLocalStorage } from '../hooks/useLocalStorage';
+
+//Services
 import { AuthService } from '../services/AuthService';
+
+//Contexts
 import { SitesContext } from './sitesContext';
 
 

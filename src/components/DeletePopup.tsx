@@ -1,8 +1,20 @@
-import React, { useContext, useRef, type SetStateAction } from 'react'
+//Libs
+import React, { useContext, useRef } from 'react'
+
+//Types
+import type { SetStateAction } from 'react'
+
+//hooks
 import { useClickAway } from '../hooks/useClickAway'
+
+//Icons
 import { IoMdClose } from 'react-icons/io'
 import { FaCheck } from 'react-icons/fa6'
+
+//Services
 import { SitesServices } from '../services/SitesServices'
+
+//Contexts
 import { SitesContext } from '../contexts/sitesContext'
 
 

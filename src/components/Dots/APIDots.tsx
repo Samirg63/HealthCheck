@@ -1,3 +1,4 @@
+//Libs
 import React, { useEffect, useRef, useState } from "react";
 
 //Hooks
@@ -8,11 +9,13 @@ import { BsThreeDots } from "react-icons/bs";
 
 //Components
 import RedDot from "./RedDot";
+import GreenDot from "./GreenDot";
 
 //Styles
 import styles from './APIDots.module.css'
+
+//Types
 import type { IAPIs } from "../../types/IAPIs";
-import GreenDot from "./GreenDot";
 
 type Props = {
     APIs:IAPIs[]

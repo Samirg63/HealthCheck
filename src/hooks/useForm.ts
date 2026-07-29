@@ -1,5 +1,8 @@
-import { useState, type ChangeEvent } from "react";
+//Libs
+import { useState} from "react";
 
+//Types
+import type { ChangeEvent } from "react";
 
 
 export function useForm(){

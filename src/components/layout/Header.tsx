@@ -1,10 +1,17 @@
+//Libs
 import { useContext, useState } from "react";
 
 //Icons
 import { MdLogout } from "react-icons/md";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { loginContext } from "../../contexts/loginContext";
+
+//Types
 import type { ILoginContext } from "../../types/loginContext";
+
+//Hooks
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+
+//Contexts
+import { loginContext } from "../../contexts/loginContext";
 
 
 const Header = () => {

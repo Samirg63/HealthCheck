@@ -1,12 +1,14 @@
-
+//Libs
+import { useContext, useState } from "react";
 
 //Components
-import { useContext, useState } from "react";
 import Container from "./components/layout/Container/Container";
 import Header from "./components/layout/Header";
 import NewSiteForm from "./components/Forms/NewSiteForm";
 import Table from "./components/Table";
 import AuthForm from "./components/Forms/AuthForm";
+
+//Contexts
 import {loginContext} from "./contexts/loginContext";
 import { SitesContext } from "./contexts/sitesContext";
 

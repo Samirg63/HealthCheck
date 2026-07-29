@@ -1,5 +1,10 @@
+//Libs
 import React, { createContext } from 'react'
+
+//Services
 import { SitesServices } from '../services/SitesServices'
+
+//Types
 import type { ISitesContext } from '../types/ContextTypes/ISitesContext';
 
 

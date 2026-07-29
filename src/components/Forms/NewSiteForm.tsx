@@ -1,12 +1,18 @@
-//Types
+//Libs
 import {  useContext, useEffect, type SetStateAction } from "react"
 import type React from "react"
 
 //Icons
 import { FaCheck } from "react-icons/fa6"
 import { IoMdClose } from "react-icons/io"
+
+//Hooks
 import { useForm } from "../../hooks/useForm"
+
+//Contexts
 import { SitesContext } from "../../contexts/sitesContext"
+
+//Services
 import { SitesServices } from "../../services/SitesServices"
 
 

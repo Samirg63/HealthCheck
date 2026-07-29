@@ -1,8 +1,11 @@
+//Libs
 import { render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import AuthForm from '../components/Forms/AuthForm';
 import { describe,test } from 'vitest';
+
+//Components
+import AuthForm from '../components/Forms/AuthForm';
 
 describe('AuthForm',()=>{
     test("Inputs are working",async ()=>{

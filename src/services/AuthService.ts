@@ -1,7 +1,13 @@
-
+//Libs
 import { useContext } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+
+//Types
 import type { IResult } from '../types/IResult';
+
+//Hooks
+import { useLocalStorage } from '../hooks/useLocalStorage';
+
+//Contexts
 import { SitesContext } from '../contexts/sitesContext';
 
 

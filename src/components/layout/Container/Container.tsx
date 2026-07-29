@@ -1,4 +1,7 @@
+//Libs
 import React from 'react'
+
+//Styles
 import styles from './Container.module.css'
 
 type Props = {

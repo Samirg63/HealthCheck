@@ -1,8 +1,15 @@
+//Libs
 import { useContext, useState } from "react"
+
+//Types
 import type { ISite } from "../types/ISite"
-import { useLocalStorage } from "../hooks/useLocalStorage"
 import type { IResult } from "../types/IResult";
 import type { INotificationContext } from "../types/ContextTypes/INotificationContext";
+
+//Hooks
+import { useLocalStorage } from "../hooks/useLocalStorage"
+
+//Contexts
 import { NotificationContext } from "../contexts/notificationContext";
 
 

@@ -1,6 +1,11 @@
+//Libs
 import { createContext, useState } from "react"
+
+//Types
 import type { INotification } from "../types/INotification"
 import type { INotificationContext } from "../types/ContextTypes/INotificationContext"
+
+//Components
 import Notification from "../components/Notification/Notification"
 
 export const NotificationContext = createContext<INotificationContext>({} as INotificationContext)
