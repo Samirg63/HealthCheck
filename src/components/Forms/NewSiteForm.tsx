@@ -69,7 +69,7 @@ const NewSiteForm = ({handleFormVisibility,sitesLength,handleEdit,type = "create
                     ? "bg-white "
                     : "border-lightGray bg-zinc-200"
                 } border-zinc-500 py-1.5 px-2 rounded-lg w-1/2 focus:outline-zinc-800 `} type="text" name="name" placeholder="Insira o nome do site..."
-                value={formData.name}
+                value={(typeof formData.name === 'string') ? formData.name:undefined}
 
                 />
             
@@ -80,7 +80,7 @@ const NewSiteForm = ({handleFormVisibility,sitesLength,handleEdit,type = "create
                     ? "bg-white "
                     : "border-lightGray bg-zinc-200"
                 } border-zinc-500 py-1.5 px-2 rounded-lg w-1/2 focus:outline-zinc-800 `} type="text" name="url" placeholder="Insira o URL do site..."
-            value={formData.url}    
+            value={(typeof formData.url === 'string') ? formData.url:undefined}    
                 />
         </div>
         <div className={`flex gap-4 items-baseline mt-0.5 
