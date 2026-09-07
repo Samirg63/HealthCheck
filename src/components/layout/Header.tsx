@@ -7,24 +7,22 @@ import { MdLogout } from "react-icons/md";
 //Types
 import type { ILoginContext } from "../../types/loginContext";
 
-//Hooks
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-
 //Contexts
 import { loginContext } from "../../contexts/loginContext";
 
+//Services
+import { AuthService } from "../../services/AuthService";
 
 const Header = () => {
 
     const [tempLogoutVisibility] = useState<boolean>(true)
-    const {isLogged,setIsLogged} = useContext<ILoginContext>(loginContext)
-    const {deleteData} = useLocalStorage(); 
+    const {isLogged} = useContext<ILoginContext>(loginContext)
+    const {logout} = AuthService()
+    
+    
 
     
-    function logout(){
-      deleteData('token')
-      setIsLogged(false);
-    }
+    
 
 
 

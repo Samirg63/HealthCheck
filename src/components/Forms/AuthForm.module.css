@@ -1,0 +1,20 @@
+.customCheckbox{
+    display: inline-grid;
+    place-content: center;
+    vertical-align: middle
+}
+
+.customCheckbox::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  transition: transform 120ms ease-in-out;
+  background-color: #fb5b04;
+  border-radius: 2px;
+  
+}
+
+.customCheckbox:checked::before {
+  transform: scale(1);
+}

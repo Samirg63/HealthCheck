@@ -6,10 +6,10 @@ import type { ChangeEvent } from "react";
 
 
 export function useForm(){
-    const [formData,setFormData] = useState({} as {[index:string]:string})
+    const [formData,setFormData] = useState({} as {[index:string]:string|boolean})
     
     const changeHandler = (e:ChangeEvent<HTMLInputElement>)=>{
-
+        
         setFormData({
             ...formData,
             [e.target.name]:e.target.value

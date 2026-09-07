@@ -1,5 +1,5 @@
 //Libs
-import { useContext, useState, type MouseEvent } from "react";
+import { useContext, useEffect, useRef, useState, type MouseEvent } from "react";
 
 //Components
 import { ClipLoader } from "react-spinners";
@@ -10,6 +10,7 @@ import type { INotificationContext } from "../../types/ContextTypes/INotificatio
 
 //Hooks
 import { useForm } from "../../hooks/useForm"
+import { useCookie } from "../../hooks/useCookies";
 
 //Services
 import { AuthService } from "../../services/AuthService";
@@ -18,15 +19,26 @@ import { AuthService } from "../../services/AuthService";
 import { loginContext } from "../../contexts/loginContext";
 import { NotificationContext } from "../../contexts/notificationContext";
 
+//Styles
+import style from './AuthForm.module.css'
 
 const AuthForm = () => {
 
-  const {formData,changeHandler} = useForm();
+  const {formData,setFormData,changeHandler} = useForm();
   const [loading,setLoading] = useState<boolean>(false);
   const {login} = AuthService();
+  const {getCookie} = useCookie()
+  const checkbox = useRef<HTMLInputElement>(null)
   
   const {setIsLogged} = useContext(loginContext)
   const {newNotification} = useContext<INotificationContext>(NotificationContext)
+
+  useEffect(()=>{
+    const cookieData = getCookie('userData')
+    if(cookieData){
+      setFormData(cookieData as Record<string,string|boolean>)
+    }
+  },[])
 
   async function submitHandler(e?:MouseEvent<HTMLButtonElement>){
 
@@ -34,7 +46,7 @@ const AuthForm = () => {
 
     try {
       setLoading(true)
-      await login(formData as {email:string,password:string})
+      await login(formData as {email:string,password:string,maintain:boolean})
       setIsLogged(true)
       newNotification("Conectado com sucesso!",true, "Bem-vindo(a) de volta!")
     } catch (error) {
@@ -42,6 +54,13 @@ const AuthForm = () => {
     }finally{
       setLoading(false);
     }
+  }
+
+  function handleCheckbox():void{
+    setFormData({
+      ...formData,
+      maintain:checkbox.current?.checked as boolean
+    })
   }
 
   function handleKeyBoard(e:React.KeyboardEvent<HTMLFormElement>){
@@ -71,8 +90,12 @@ const AuthForm = () => {
     <div className="bg-lightGray min-w-125 w-4/12  p-4 boxShadow rounded-lg absolute top-1/2 left-1/2 -translate-1/2">
       <h2 className="text-3xl font-light text-zinc-700 text-center">Conecte-se</h2>
       <form onKeyDown={handleKeyBoard}>
-        <Input name="email" label="E-mail" placeholder="Digite seu E-mail..." handleChange={changeHandler}></Input>
-        <Input name="password" label="Senha" type="password" placeholder="Digite sua senha..." handleChange={changeHandler}></Input>
+        <Input name="email" value={(typeof formData.email === 'string') ? formData.email : undefined   } label="E-mail" placeholder="Digite seu E-mail..." handleChange={changeHandler}></Input>
+        <Input name="password" value={(typeof formData.password === 'string') ? formData.password : undefined   } label="Senha" type="password" placeholder="Digite sua senha..." handleChange={changeHandler}></Input>
+        <div className="flex items-center gap-2 pl-4">
+          <input ref={checkbox} checked={(typeof formData.maintain === 'boolean') ? formData.maintain : false   } type="checkbox" name="maintain" onClick={handleCheckbox} className={`${style.customCheckbox} cursor-pointer rounded-sm appearance-none w-4 h-4 border border-zinc-800 bg-white`}/>
+          <span className="pt-0.5 text-zinc-800">Lembre de mim</span>
+        </div>
         <button disabled={loading} tabIndex={-1} onClick={submitHandler} 
         className={`
           ${loading ? "cursor-wait": "cursor-pointer"}
